@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WaitRotator Example page &middot; Lexey111</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lexey111">
+
+    <!-- CSS -->
+    <link href="./css/wait-rotator.css" rel="stylesheet">
+    <link href="./css/examples.css" rel="stylesheet">
+</head>
+<body>
+<div id="wrapper">
+<div id="demo-pane">
+    <h1>WaitRotator example page</h1>
+
+    <p class="powered">
+        Powered by <a href="http://vanilla-js.com/" target="_blank">
+        <img alt=""
+             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPBAMAAACB51W8AAAAJFBMVEX/ZgCJjnlmZmb///////////+qqqr////z2JCqqqoAAAD///+yFabeAAAAcUlEQVQokbWSwQ3AIAhFnbbdwG7QEDYgLkDYwLhcUaOhHloufk04+PJIwHA5E+LhyhkifOemlp0g6xFAYL1aAHmCmUp+gZXiAWqdYLJGREBhxAGKWOMCduliTAqSad2eO6hiMa0LpbJ1PP+gd9fe3/MArgg2b0oDyO8AAAAASUVORK5CYII="/></a>
+
+        <br/>
+        &copy; 2013, <a href="http://lexey111.com">Lexey111</a>
+    </p>
+
+    <h2>Valid for</h2>
+    <ul>
+        <li>Chrome (webkit) 24+</li>
+        <li>Opera 12.15+</li>
+        <li>Firefox 20+ (see the remark about Line Style)</li>
+        <li>IE 10+</li>
+        <li>Android browsers</li>
+    </ul>
+
+    <h2>The Rotator</h2>
+
+    <p>
+        Here you can see live example of WaitRotator by Lexey111 (<a href="#" target="_blank">blog article</a>) and try
+        the different classes combinations.
+    </p>
+
+    <p>
+        Let's click buttons on the right side panel and we'll see what happens. Feel free to try.
+    </p>
+
+    <div class="example-container">
+        <div class="example-circle">
+            <div class="wait-rotator-circle" id="example-item"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <p class="example-header">
+        Layout:
+    </p>
+
+    <pre id="example-layout-container" class="html-layout"></pre>
+
+    <div class="clearfix"></div>
+
+    <h2>LESS file</h2>
+    <p>
+        All the magic is concentrated in the wait-rotator.css file, that are compiled from .less file.
+    </p>
+    <p>
+        This is header of LESS file where all the constants are defined.
+    </p>
+    <p class="example-header">
+        <b>wait-rotator</b>.less:
+    </p>
+    <pre class="less-layout">
+<b class="multiline-comment">/**
+* Wait rotator
+* (c) lexey111, 2013
+*
+* http://lexey111.com
+*/
+</b>
+<b class="comment">// size constants</b>
+@wait_rotator_standard_circle_size: <b class="value">32px</b>;
+@wait_rotator_little_circle_size: <b class="value">16px</b>;
+@wait_rotator_big_circle_size: <b class="value">48px</b>;
+@wait_rotator_giant_circle_size: <b class="value">120px</b>;
+
+@wait_rotator_standard_thickness: <b class="value">1px</b>;
+@wait_rotator_thick: <b class="value">2px</b>;
+@wait_rotator_thickest: <b class="value">4px</b>;
+
+<b class="comment">// speed</b>
+@wait_rotator_standard_cycle_length: <b class="value">1s</b>;
+@wait_rotator_slow_cycle_length: <b class="value">2s</b>;
+@wait_rotator_fast_cycle_length: <b class="value">.5s</b>;
+
+<b class="comment">// colors</b>
+@wait_rotator_color_top: <b class="value">#0077b3</b>;
+@wait_rotator_color_right: <b class="value">#3ecd45</b>;
+@wait_rotator_color_bottom: <b class="value">#ffa436</b>;
+@wait_rotator_color_left: <b class="value">#953b39</b>;
+
+@wait_rotator_grayscale_color_top: <b class="value">#555</b>;
+@wait_rotator_grayscale_color_right: <b class="value">#777</b>;
+@wait_rotator_grayscale_color_bottom: <b class="value">#999</b>;
+@wait_rotator_grayscale_color_left: <b class="value">#bbb</b>;
+
+@wait_rotator_monochrome: <b class="value">#444</b>;
+
+<b class="comment">// fullscreen wait layer styles</b>
+@wait-message-width: <b class="value">250px</b>;
+@wait-message-height: <b class="value">80px</b>;
+@wait-circle-size: <b class="value">32px</b>;
+...
+    </pre>
+
+    <div class="clearfix"></div>
+
+    <h2>Bonus part: entire UI lock</h2>
+
+    <p>
+        If you need a full-screen lock: click <a href="#" id="fullscreen-wait">here</a> to show wait layer for 5 second.
+    </p>
+
+    <p>
+        You can call function <b>showWait(<i>duration, ms</i>)</b> to show wait layer for required period of time.
+    </p>
+
+    <p>
+        If you call <b>showWait()</b> without duration parameter the layer will be shown for infinite time. You have to
+        call <b>waitHide()</b> function explicitly, e.g. after end of AJAX call.
+    </p>
+
+    <p class="example-header">
+        Layout (add this just before &lt;/body> and don't forget to attach <b>wait-rotator.css</b>):
+    </p>
+    <pre class="html-layout">
+&lt;div <b class="keyword">id</b>="<b class="string">wait-rotator-fullscreen</b>" <b class="keyword">style</b>="<b
+            class="string">display: none</b>">
+    &lt;div <b class="keyword">class</b>="<b class="string">wait-rotator-wrapper</b>">
+        &lt;div <b class="keyword">class</b>="<b class="string">wait-rotator-circle wrc-slow wrc-thick wrc-1-slice</b>">&lt;/div>
+        &lt;span><b class="content">Please wait...</b>&lt;/span>
+    &lt;/div>
+&lt;/div>
+    </pre>
+    <p>
+        Two simple JS functions to show the wait layer and to hide it.
+    </p>
+
+    <p class="example-header">
+        JavaScript support code (vanilla, you can use jQuery instead):
+    </p>
+    <pre class="js-layout">
+<b class="multiline-comment">/**
+* Show fullscreen wait layer
+* @param {Number} duration in ms - optional
+*/</b>
+<b class="keyword">var</b> wait_layer = <b class="property">document</b>.getElementById("<b class="string">wait-rotator-fullscreen</b>");
+<b class="keyword">var</b> wait_timer;
+<b class="keyword">function</b> <b class="function">showWait</b>(duration) {
+    <b class="comment">// show the wait layer</b>
+    wait_layer.<b class="property">style.display</b> = "<b class="string">block</b>";
+    wait_layer.<b class="property">style.opacity</b> = 1;
+
+    <b class="comment">// start new countdown if any</b>
+    <b class="function">clearTimeout</b>(wait_timer);
+
+    <b class="comment">// check is wait duration set at all...</b>
+    <b class="keyword">if</b> ((<b class="keyword">typeof</b> duration != "<b class="string">undefined</b>") && (!<b
+            class="function">isNaN</b>(<b class="function">parseInt</b>(duration)) && <b class="function">isFinite</b>(duration))) {
+        <b class="comment">// yes - well, let's start countdown timer</b>
+        wait_timer = <b class="function">setTimeout</b>(<b class="keyword">function</b> () {
+            hideWait();
+        }, duration);
+    }
+}
+<b class="multiline-comment">
+/**
+* Hide wait layer (fadeOut)
+*/</b>
+<b class="keyword">function</b> <b class="function">hideWait</b>() {
+    wait_layer.<b class="property">style.opacity</b> = 1;
+    (<b class="keyword">function</b> <b class="function">fade</b>() {
+        <b class="keyword">if</b> ((wait_layer.<b
+            class="property">style.opacity</b> -= .2) <= .2) {
+            wait_layer.<b class="property">style.display</b> = "<b
+            class="string">none</b>";
+        } <b class="keyword">else</b> {
+            <b class="function">setTimeout</b>(<b
+            class="function">fade</b>, 40);
+        }
+    })();
+}
+    </pre>
+    <p>
+        And use example &mdash;
+    </p>
+
+    <p class="example-header">
+        Code to call full-screen wait layer onClick (vanilla):
+    </p>
+    <pre class="js-layout">
+<b class="comment">// assign call for full-screen wait layer (5 second)
+// when user click on the demo link</b>
+<b class="property">document</b>.<b class="function">getElementById</b>("<b class="string">fullscreen-wait</b>").onclick = <b
+            class="function">function</b> (e) {
+    e.<b class="function">preventDefault</b>();
+    <b class="function">showWait</b>(5000);
+    <b class="keyword">return</b> false;
+};
+    </pre>
+    
+    <p class="download">
+        You can download all the source code from <a href="https://github.com/lexey111/waitRotator">Github</a>.
+    </p>
+
+    <p class="wbr">
+        With Best Regards
+        <br>
+        <i>Lexey</i><b>111</b>
+    </p>
+
+    <div class="clearfix"></div>
+</div>
+<div id="control-pane">
+    <h2>Size</h2>
+
+    <div class="cp-block">
+        <input type="radio" name="rotator-size" id="rs1" value="wrc-little"/>
+        <label for="rs1" tabindex="0">
+            Little
+        </label>
+
+        <input type="radio" name="rotator-size" id="rs2" value="" checked/>
+        <label for="rs2" tabindex="0">
+            Normal
+        </label>
+
+        <input type="radio" name="rotator-size" id="rs3" value="wrc-big"/>
+        <label for="rs3" tabindex="0">
+            Big
+        </label>
+
+        <input type="radio" name="rotator-size" id="rs4" value="wrc-giant"/>
+        <label for="rs4" tabindex="0">
+            Giant
+        </label>
+    </div>
+
+    <h2>Slices</h2>
+
+    <div class="cp-block">
+
+        <input type="radio" name="rotator-slices" id="rsl1" value="" checked/>
+        <label for="rsl1" tabindex="0">
+            Four
+        </label>
+
+        <input type="radio" name="rotator-slices" id="rsl2" value="wrc-3-slice"/>
+        <label for="rsl2" tabindex="0">
+            Three
+        </label>
+
+        <input type="radio" name="rotator-slices" id="rsl3" value="wrc-2-slice"/>
+        <label for="rsl3" tabindex="0">
+            Two
+        </label>
+
+        <input type="radio" name="rotator-slices" id="rsl4" value="wrc-1-slice"/>
+        <label for="rsl4" tabindex="0">
+            One
+        </label>
+    </div>
+
+    <h2>Parts</h2>
+
+    <div class="cp-block">
+
+        <input type="radio" name="rotator-borders" id="rsp1" value="" checked/>
+        <label for="rsp1" tabindex="0">
+            Four
+        </label>
+
+        <input type="radio" name="rotator-borders" id="rsp2" value="wrc-3-part"/>
+        <label for="rsp2" tabindex="0">
+            Three
+        </label>
+
+        <input type="radio" name="rotator-borders" id="rsp3" value="wrc-2-part"/>
+        <label for="rsp3" tabindex="0">
+            Two
+        </label>
+
+        <input type="radio" name="rotator-borders" id="rsp4" value="wrc-1-part"/>
+        <label for="rsp4" tabindex="0">
+            One
+        </label>
+    </div>
+
+    <p>
+        * You should use Slicing or Partitioning, but not both of them simultaneously
+    </p>
+
+    <h2>Speed</h2>
+
+    <div class="cp-block">
+
+        <input type="radio" name="rotator-speed" id="rss1" value="wrc-slow"/>
+        <label for="rss1" tabindex="0">
+            Slow
+        </label>
+
+        <input type="radio" name="rotator-speed" id="rss2" value="" checked/>
+        <label for="rss2" tabindex="0">
+            Normal
+        </label>
+
+        <input type="radio" name="rotator-speed" id="rss3" value="wrc-fast"/>
+        <label for="rss3" tabindex="0">
+            Fast
+        </label>
+    </div>
+
+    <h2>Thickness</h2>
+
+    <div class="cp-block">
+
+        <input type="radio" name="rotator-thick" id="rst1" value="" checked/>
+        <label for="rst1" tabindex="0">
+            Thin
+        </label>
+
+        <input type="radio" name="rotator-thick" id="rst2" value="wrc-thick"/>
+        <label for="rst2" tabindex="0">
+            Thick
+        </label>
+
+        <input type="radio" name="rotator-thick" id="rst3" value="wrc-thickest"/>
+        <label for="rst3" tabindex="0">
+            Thickest
+        </label>
+    </div>
+
+    <h2>Colors</h2>
+
+    <div class="cp-block">
+
+        <input type="radio" name="rotator-color" id="rsc1" value="wrc-monochrome"/>
+        <label for="rsc1" tabindex="0">
+            Monochrome
+        </label>
+
+        <input type="radio" name="rotator-color" id="rsc2" value="wrc-grayscale"/>
+        <label for="rsc2" tabindex="0">
+            Grayscale
+        </label>
+
+        <input type="radio" name="rotator-color" id="rsc3" value="" checked/>
+        <label for="rsc3" tabindex="0">
+            Color
+        </label>
+    </div>
+
+    <h2>Line style</h2>
+
+    <div class="cp-block">
+
+        <input type="radio" name="rotator-style" id="rsst1" value="wrc-dotted"/>
+        <label for="rsst1" tabindex="0">
+            Dotted
+        </label>
+
+        <input type="radio" name="rotator-style" id="rsst2" value="wrc-dashed"/>
+        <label for="rsst2" tabindex="0">
+            Dashed
+        </label>
+
+        <input type="radio" name="rotator-style" id="rsst3" value="" checked/>
+        <label for="rsst3" tabindex="0">
+            Solid
+        </label>
+    </div>
+    <p>
+        * Does not work with Mozilla Firefox due to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=382721" target="_blank">bug</a>.
+    </p>
+
+    <h2>Shape</h2>
+
+    <div class="cp-block">
+
+        <input type="radio" name="rotator-shape" id="rssh1" value="" checked/>
+        <label for="rssh1" tabindex="0">
+            Round
+        </label>
+
+        <input type="radio" name="rotator-shape" id="rssh2" value="wrc-rounded"/>
+        <label for="rssh2" tabindex="0">
+            Rounded
+        </label>
+
+        <input type="radio" name="rotator-shape" id="rssh3" value="wrc-squared"/>
+        <label for="rssh3" tabindex="0">
+            Square
+        </label>
+    </div>
+
+</div>
+</div>
+
+<div id="right-bg-pane"></div>
+<div id="left-bg-pane"></div>
+
+<div id="wait-rotator-fullscreen" style="display: none">
+    <div class="wait-rotator-wrapper">
+        <div class="wait-rotator-circle wrc-slow wrc-thick wrc-1-slice"></div>
+        <span>Please wait...</span>
+    </div>
+</div>
+
+<script src="js/examples.js"></script>
+</body>
+</html>

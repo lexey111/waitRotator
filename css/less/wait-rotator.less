@@ -1,0 +1,263 @@
+/**
+* Wait rotator
+* (c) lexey111, 2013
+*
+* http://lexey111.com
+*/
+
+// size constants
+@wait_rotator_standard_circle_size: 32px;
+@wait_rotator_little_circle_size: 16px;
+@wait_rotator_big_circle_size: 48px;
+@wait_rotator_giant_circle_size: 120px;
+
+@wait_rotator_standard_thickness: 1px;
+@wait_rotator_thick: 2px;
+@wait_rotator_thickest: 4px;
+
+// speed
+@wait_rotator_standard_cycle_length: 1s;
+@wait_rotator_slow_cycle_length: 2s;
+@wait_rotator_fast_cycle_length: .5s;
+
+// colors
+@wait_rotator_color_top: #0077b3;
+@wait_rotator_color_right: #3ecd45;
+@wait_rotator_color_bottom: #ffa436;
+@wait_rotator_color_left: #953b39;
+
+@wait_rotator_grayscale_color_top: #555;
+@wait_rotator_grayscale_color_right: #777;
+@wait_rotator_grayscale_color_bottom: #999;
+@wait_rotator_grayscale_color_left: #bbb;
+
+@wait_rotator_monochrome: #444;
+
+// fullscreen wait layer styles
+@wait-message-width: 250px;
+@wait-message-height: 80px;
+@wait-circle-size: 32px;
+
+@-webkit-keyframes webkit-wait-rotate-animation {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wait-rotate-animation {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.wait-rotator-circle {
+  display: block; // or inline-block
+  float: left;
+  position: relative;
+
+  // size
+  width: @wait_rotator_standard_circle_size;
+  height: @wait_rotator_standard_circle_size;
+
+  // initial borders
+  border-top: @wait_rotator_standard_thickness solid @wait_rotator_color_top;
+  border-right: @wait_rotator_standard_thickness solid @wait_rotator_color_right;
+  border-bottom: @wait_rotator_standard_thickness solid @wait_rotator_color_bottom;
+  border-left: @wait_rotator_standard_thickness solid @wait_rotator_color_left;
+
+  border-radius: 100%;
+  box-sizing: border-box;
+
+  // animation parameters
+  animation-name: wait-rotate-animation;
+  animation-duration: @wait_rotator_standard_cycle_length;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+
+  -webkit-animation: webkit-wait-rotate-animation @wait_rotator_standard_cycle_length linear 0 infinite;
+
+  // APPEARANCE CLASSES
+  //
+  // shape
+  &.wrc-rounded {
+    border-radius: 20%;
+  }
+
+  &.wrc-squared {
+    border-radius: 0;
+  }
+
+  // size
+  &.wrc-little {
+    width: @wait_rotator_little_circle_size;
+    height: @wait_rotator_little_circle_size;
+  }
+
+  &.wrc-big {
+    width: @wait_rotator_big_circle_size;
+    height: @wait_rotator_big_circle_size;
+  }
+
+  &.wrc-giant {
+    width: @wait_rotator_giant_circle_size;
+    height: @wait_rotator_giant_circle_size;
+  }
+
+  // colors
+  &.wrc-grayscale {
+    border-top-color: @wait_rotator_grayscale_color_top;
+    border-right-color: @wait_rotator_grayscale_color_right;
+    border-bottom-color: @wait_rotator_grayscale_color_bottom;
+    border-left-color: @wait_rotator_grayscale_color_left;
+  }
+
+  &.wrc-monochrome {
+    border-top-color: @wait_rotator_monochrome;
+    border-right-color: @wait_rotator_monochrome;
+    border-bottom-color: @wait_rotator_monochrome;
+    border-left-color: @wait_rotator_monochrome;
+  }
+
+  // style
+  &.wrc-dashed {
+    border-style: dashed;
+  }
+
+  &.wrc-dotted {
+    border-style: dotted;
+  }
+
+  // slices
+  &.wrc-3-slice {
+    border-top-style: none;
+  }
+
+  &.wrc-2-slice {
+    border-left-style: none;
+    border-right-style: none;
+  }
+
+  &.wrc-1-slice {
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+  }
+
+  // parts
+  &.wrc-3-part {
+    border-top-color: transparent;
+  }
+
+  &.wrc-2-part {
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+
+  &.wrc-1-part {
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  // speed
+  &.wrc-slow {
+    animation-duration: @wait_rotator_slow_cycle_length;
+    -webkit-animation-duration: @wait_rotator_slow_cycle_length;
+  }
+
+  &.wrc-fast {
+    animation-duration: @wait_rotator_fast_cycle_length;
+    -webkit-animation-duration: @wait_rotator_fast_cycle_length;
+    display: block;
+  }
+
+  // thickness
+  &.wrc-thick {
+    border-left-width: @wait_rotator_thick;
+    border-right-width: @wait_rotator_thick;
+    border-top-width: @wait_rotator_thick;
+    border-bottom-width: @wait_rotator_thick;
+  }
+
+  &.wrc-thickest {
+    border-left-width: @wait_rotator_thickest;
+    border-right-width: @wait_rotator_thickest;
+    border-top-width: @wait_rotator_thickest;
+    border-bottom-width: @wait_rotator_thickest;
+  }
+
+}
+
+/**
+* Full-screen wait layer
+*
+* <div id="wait-rotator-fullscreen" style="display: none">
+*     <div class="wait-rotator-wrapper">
+*         <div class="wait-rotator-circle wrc-slow wrc-thick wrc-1-slice"></div>
+*         <span>Please wait...</span>
+*     </div>
+* </div>
+*
+*/
+#wait-rotator-fullscreen {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  // thin semitransparent lines
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB1JREFUeNpiZGBgSGPAA1jMzMzwyTMwDgsTAAIMAFWiBDWYiad7AAAAAElFTkSuQmCC);
+  background-repeat: repeat;
+  z-index: 20000;
+  opacity: 1;
+  padding: 0;
+  margin: 0;
+  .wait-rotator-wrapper {
+    background-color: #fff;
+    text-align: left;
+    vertical-align: middle;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -@wait-message-height / 2;
+    margin-left: -@wait-message-width / 2;
+    width: @wait-message-width;
+    height: @wait-message-height;
+
+    box-shadow: 0 0 6px rgba(0, 0, 0, .5);
+    .wait-rotator-circle {
+      margin-left: @wait-circle-size / 2;
+      margin-top: @wait-circle-size / 2;
+      width: @wait-circle-size;
+      height: @wait-circle-size;
+      margin-top: (@wait-message-height - @wait-circle-size) / 2;
+    }
+    span {
+      padding-left: 8px;
+      line-height: @wait-message-height;
+      height: @wait-message-height;
+      vertical-align: middle;
+      text-transform: uppercase;
+      font-size: 12pt;
+    }
+  }
+}
