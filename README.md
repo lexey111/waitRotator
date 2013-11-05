@@ -23,4 +23,4 @@ Interactive example
 -------------------
 Available on http://test.lexey111.com/waitRotator/index.html
 
-Good luck!
+Good luck.
