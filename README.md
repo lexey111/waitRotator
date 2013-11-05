@@ -11,7 +11,7 @@ This is the set of CSS classes to make rotating busy indicators. You can read mo
 Valid for
 ---------
 
-Modern browsers only, such us
+Modern browsers only, such us:
 
 * Chrome (webkit) 24+
 * Opera 12.15+
