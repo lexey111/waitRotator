@@ -5,7 +5,8 @@ waitRotator LESS file and example page.
 
 What is it?
 -----------
-This is set of CSS classes to make the rotating busy indicators. You can read more about it on my blog (http://lexey111.blogspot.com/2013/11/waitrotator.html)
+
+This is the set of CSS classes to make rotating busy indicators. You can read more about it on my blog (http://lexey111.blogspot.com/2013/11/waitrotator.html)
 
 Valid for
 ---------
