@@ -17,7 +17,7 @@ Modern browsers only, such us:
 * Opera 12.15+
 * Firefox 20+ (see the remark about Line Style)
 * IE 10+
-* Android browsers
+* Android browsers.
 
 Interactive example
 -------------------
